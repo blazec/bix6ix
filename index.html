@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>bix6ix</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+   <script src='jquery-3.1.1.min.js'></script>
+ <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+ <script src='
+https://npmcdn.com/@turf/turf@3.5.1/turf.min.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+
+  <style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+
+.exit-button {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 1;
+  visibility: visible;
+}
+
+.instruction-container {
+  position: absolute;
+  background-color: white;
+  top: 0;
+  right: -35%;
+  width: 27.5%;
+  height: 100%;
+  overflow-y: scroll;
+  box-shadow: -2px 0px 2px 0px #888;
+
+}
+
+.instruction {
+    height: 5%;
+    font: 0.9em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: white; /*background color of legend*/
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+  }
+
+.duration-and-distance {
+  font: 0.7em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: #2b8cbe;
+}
+
+.instruction-header-cycling {
+    background-color: #2b8cbe;
+    height : 9%;
+    font: 0.85em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: white;
+    padding-left: 1%;
+    padding-top: 4%;
+    padding-right: 1%;
+    padding-bottom: 4%;
+}
+
+.instruction-header-walking {
+    background-color: #fd8d3c;
+    height: 9%;
+    font: 0.85em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: white;
+    padding-left: 1%;
+    padding-top: 4%;
+    padding-right: 1%;
+    padding-bottom: 4%;
+}
+
+.instruction-header-content {
+    font: 1em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: white;
+    position: absolute;
+    /*bottom: 0%;*/
+    left: 4%;
+    display: table-cell;
+    vertical-align: bottom;*/
+}
+
+#geocoder-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-top: 10px;
+  };
+  #geocoder-container > div {
+    min-width:50%;
+    margin-left:25%;
+  };
+  .input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+#getDirectionsButton {
+  background-color:#007dc1;
+  position: absolute;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:13px;
+  padding:4% 4%;
+  text-decoration:none;
+  box-shadow:none;
+  width: 90%;
+  left: 1%;
+  right: 1%;
+  text-align: center;
+  margin-top: 10px;
+
+}
+#getDirectionsButton:hover {
+  background-color:#0061a7;
+}
+#getDirectionsButton:active {
+  position:relative;
+  top:1px;
+}
+
+input {
+  width: 95%;
+  line-height: 2em;
+  margin: 0.5em;
+  border-color: #969696;
+  border-width: 1px;
+}
+
+.input-container {
+  width: 25%;
+  height: 29%;
+  position: absolute;
+  background-color: white;
+  top: 0;
+  margin: 1em;
+  left: 0%;
+  box-shadow: 0px 0px 0px 0px #888;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #888;
+}
+
+#toggle-cycling {
+  position: absolute;
+  margin: 1em;
+  bottom: 0%;
+  cursor: pointer;
+}
+
+#toggle-walking {
+  position: absolute;
+  margin: 1em;
+  bottom: 10%;
+  cursor: pointer;
+}
+
+#title {
+  text-align: center;
+  font: 1em 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+  </style>
+</head>
+<body>
+  <script>
+
+  </script>
+  <div id='map' class='map'></div> 
+  <div class='instruction-container'></div>
+  <div class='exit-button'>&times;</div>
+
+  <div class='input-container'>
+      <p id='title'>bix6ix</p>
+      <input list="origin-list" type="text" id="origin" name="origin" placeholder="Type origin..">
+        <datalist id="origin-list">
+        </datalist>
+      <input list="destination-list" type="text" id="destination" name="destination" placeholder="Type destination..">
+        <datalist id="destination-list">
+        </datalist>
+      <!-- <input id="autoComplete" class="controls" type="text"> -->
+      <div id="getDirectionsButton">Get Directions</div>
+  </div>
+
+  <img src='http://imgh.us/cycling.svg' id='toggle-cycling' name="Toggle cycling line">
+  <img src='http://imgh.us/walking_1.svg' id='toggle-walking' name="Toggle walking line">
+
+  <script src='./bikeshare.geojson'></script>
+  <script src='index.js'></script>
+
+</body>
+</html>
+
+
+
