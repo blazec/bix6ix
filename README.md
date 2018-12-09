@@ -1,2 +1,2 @@
 # bix6ix
-Map directions for Bike Share Toronto users. The code uses the Mapbox API and needs an API key.
+Map directions for Bike Share Toronto users. https://bix6ix.github.io/
